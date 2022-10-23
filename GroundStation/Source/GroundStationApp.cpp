@@ -7,10 +7,10 @@
 
 using namespace Morph;
 
-class MorphApp : public Application
+class GroundStationApp : public Application
 {
 public:
-	MorphApp(const std::string& name)
+	GroundStationApp(const std::string& name)
 		: Application(name), m_Font("Montserrat")
 	{
 		m_PanelStack.PushPanel(CreateRef<ArduinoPanel>());
@@ -71,5 +71,5 @@ private:
 
 Application* CreateApplication()
 {
-	return new MorphApp("Morph Application");
+	return new GroundStationApp("HyperJackets | Ground Station");
 }
