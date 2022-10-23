@@ -1,6 +1,6 @@
-workspace "Morph"
+workspace "hj-GroundStation"
     architecture "x64"
-    startproject "MorphApp" -- Generic for different apps
+    startproject "GroundStation" -- Generic for different apps
 
     configurations 
     {
@@ -14,4 +14,4 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 MorphDir = ".."
 
 include "Vendor.lua"
-include "MorphApp"
+include "GroundStation"
