@@ -16,6 +16,12 @@ public:
 		AddPanel(CreateRef<ArduinoPanel>());
 	}
 
+	virtual void OnAttach() override
+	{
+		m_Font.Set(FontWeight::Normal, "Resources\\Montserrat-Regular.ttf");
+		Style::SetDefaultFont(m_Font);
+	}
+
 	virtual void OnDrawGUI() override
 	{
 		if (ImGui::BeginMenuBar())

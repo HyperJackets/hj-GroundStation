@@ -18,6 +18,8 @@ namespace Morph {
 		
 		virtual void OnUpdate(float timestep) {}
 		virtual void OnDrawGUI() {}
+		virtual void OnAttach() {}
+		virtual void OnDetach() {}
 		void OnEvent(Event& event);
 
 		void Run();

@@ -26,6 +26,8 @@ namespace Morph {
 	{
 		m_GUILayer->OnAttach();
 
+		OnAttach();
+
 		for (auto& panel : m_PanelStack)
 			panel->OnAttach();
 
@@ -65,6 +67,8 @@ namespace Morph {
 
 		for (auto& panel : m_PanelStack)
 			panel->OnDetach();
+
+		OnDetach();
 
 		m_GUILayer->OnDetach();
 	}
