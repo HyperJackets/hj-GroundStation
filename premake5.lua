@@ -13,5 +13,8 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 MorphDir = ".."
 
-include "Vendor.lua"
+group "Dependencies"
+    include "Vendor.lua"
+group ""
+
 include "GroundStation"

@@ -13,16 +13,17 @@ public:
 	GroundStationApp(const std::string& name)
 		: Application(name), m_Font("Montserrat")
 	{
-		m_PanelStack.PushPanel(CreateRef<ArduinoPanel>());
-		for (auto& panel : m_PanelStack)
-			panel->OnAttach();
+		AddPanel(CreateRef<ArduinoPanel>());
+	}
 
+	virtual void OnAttach() override
+	{
+		m_Font.Set(FontWeight::Normal, "Resources\\Montserrat-Regular.ttf");
+		Style::SetDefaultFont(m_Font);
 	}
 
 	virtual void OnDrawGUI() override
 	{
-		Layout::BeginDockspace();
-
 		if (ImGui::BeginMenuBar())
 		{
 			if (ImGui::BeginMenu("View"))
@@ -48,20 +49,11 @@ public:
 		ImGui::Text("%.3f ms", m_FrameTime * 1000.0f);
 		ImGui::Text("%.2f fps", 1.0f / m_FrameTime);
 		ImGui::End();
-
-		for (auto& panel : m_PanelStack)
-		{
-			panel->OnRenderGUI();
-		}
-
-		Layout::EndDockspace();
 	}
 
 	virtual void OnUpdate(float timestep) override
 	{
 		m_FrameTime = timestep;
-		for (auto& panel : m_PanelStack)
-			panel->OnUpdate(timestep);
 	}
 private:
 	float m_FrameTime = 0.0f;
