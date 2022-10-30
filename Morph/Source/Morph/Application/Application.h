@@ -4,6 +4,7 @@
 #include "Window.h"
 
 #include "GUI/ImGui/ImGuiLayer.h"
+#include "GUI/PanelStack.h"
 
 namespace Morph {
 
@@ -23,6 +24,10 @@ namespace Morph {
 
 		bool OnWindowClose(WindowCloseEvent& event);
 		bool OnWindowResize(WindowResizeEvent& event);
+	protected:
+		void AddPanel(const Ref<GUI::Panel>& panel);
+	protected:
+		PanelStack m_PanelStack;
 	private:
 		bool m_Running = true;
 		float m_Time;

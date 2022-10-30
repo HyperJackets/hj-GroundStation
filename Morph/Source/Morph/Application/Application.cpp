@@ -26,6 +26,9 @@ namespace Morph {
 	{
 		m_GUILayer->OnAttach();
 
+		for (auto& panel : m_PanelStack)
+			panel->OnAttach();
+
 		while (m_Running)
 		{
 			float currTime = (float)glfwGetTime();
@@ -37,14 +40,31 @@ namespace Morph {
 
 			OnUpdate(timestep);
 
+			for (auto& panel : m_PanelStack)
+			{
+				panel->OnUpdate(timestep);
+			}
+
 			m_GUILayer->Begin();
 
+			Layout::BeginDockspace();
+
 			OnDrawGUI();
+
+			for (auto& panel : m_PanelStack)
+			{
+				panel->OnRenderGUI();
+			}
+
+			Layout::EndDockspace();
 
 			m_GUILayer->End();
 
 			m_Window->OnUpdate();
 		}
+
+		for (auto& panel : m_PanelStack)
+			panel->OnDetach();
 
 		m_GUILayer->OnDetach();
 	}
@@ -74,4 +94,8 @@ namespace Morph {
 		return false;
 	}
 
+	void Application::AddPanel(const Ref<GUI::Panel>& panel)
+	{
+		m_PanelStack.PushPanel(panel);
+	}
 }

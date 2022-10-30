@@ -27,7 +27,7 @@ namespace Morph::GUI {
 
 		UUID GetID() const { return m_ID; }
 
-		virtual void OnRenderGUI() override
+		virtual void OnRenderGUI() override final
 		{
 			if (m_IsOpen)
 			{
